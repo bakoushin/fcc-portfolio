@@ -6,7 +6,11 @@
 
 body {
   background-color: #fafafb;
+  /* fix for webkit rendering */
+  -webkit-font-smoothing: antialiased;
 }
+
+::selection { background-color: #9baeff; }
 
 /**************************************
 * BUTTON
@@ -118,7 +122,6 @@ body {
 .main__heading {
   font: 800 36px/1.2 'Montserrat', sans-serif;
   text-align: left;
-  text-transform: none;
   color: #fafafb;
   margin: 0 0 30px;
   padding: 0;
