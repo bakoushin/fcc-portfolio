@@ -21,6 +21,7 @@ body {
 .button:visited,
 .button:hover,
 .button:active {
+  position: relative;
   display: inline-block;
   border: 1px solid #8191da;
   background: transparent;
@@ -29,13 +30,70 @@ body {
   letter-spacing: 2.6px;
   text-transform: uppercase;
   text-decoration: none;
-  transition: .25s ease-out;
   padding: 14px 16px;
+  overflow: hidden;
+  outline: none;
+  transition: .25s ease-in color;
+  z-index: 0;
+}
+
+.button::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  padding-top: 0;
+  opacity: 0;
+  border-radius: 50%;
+  background: #8191da;
+  z-index: -10;
+  transform: translate(-50%, -50%);
+  transition:
+    .15s ease-in width,
+    .15s ease-in padding-top,
+    .15s ease-in opacity;
 }
 
 .button:hover {
-  background: #8191da;
   color: #fafafb;
+}
+
+.button:hover::before {
+  width: 120%;
+  padding-top: 120%;
+  opacity: 1;
+}
+
+.ripple {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 160%;
+  padding-top: 160%;
+  border-radius: 50%;
+  background: #424554;
+  z-index: -10;
+  transform: scale(0);
+  opacity: 0;
+  animation: .5s ease-out ripple;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  20% {
+    transform: scale(.6);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
 }
 
 /**************************************
@@ -44,18 +102,32 @@ body {
 
 .input {
   height: 36px;
+  margin-bottom: 36px;
   width: 100%;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid #424554;
   color: #424554;
-  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #8191da;
   border-radius: 0;
+  background: transparent;
+  background-position: center bottom;
+  background-image: linear-gradient(
+    to right,
+    #8191da,
+    #8191da);
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  transition: .3s ease background-size;
 }
 
 .input:focus {
-  box-shadow: none;
   outline: none;
+  background-size: 100% 1px;
+}
+
+.textarea {
+  height: auto;
+  min-height: 72px;
+  resize: none;
 }
 
 /**************************************
@@ -63,16 +135,10 @@ body {
 **************************************/
 
 .header {
-  margin: 0 0 30px;
-}
-
-.header__menu {
-  font: 400 18px/80px 'Montserrat', sans-serif;
+  margin-bottom: 30px;
+  font: 400 18px/4 'Montserrat', sans-serif;
   text-transform: uppercase;
 }
-
-.header__menu--left { text-align: left; }
-.header__menu--right { text-align: right; }
 
 .header__menu-item { display: inline-block; }
 
@@ -81,13 +147,31 @@ body {
 .header__link:visited,
 .header__link:hover,
 .header__link:active {
-  margin: 0 15px;
+  display: inline-block;
   text-decoration: none;
   color: #fafafb;
+  margin: 0 15px;
 }
 
-.header__link:hover {
-  border-bottom: 2px solid #fafafb;
+.header__link::after {
+  content: '';
+  display: block;
+  position: relative;
+  bottom: 24px;
+  height: 2px;
+  width: 100%;
+  background-position: center bottom;
+  background-image: linear-gradient(
+    to right,
+    #fafafb,
+    #fafafb);
+  background-size: 0% 2px;
+  background-repeat: no-repeat;
+  transition: .15s ease-out background-size;
+}
+
+.header__link:hover::after {
+  background-size: 100% 2px;
 }
 
 /**************************************
@@ -124,7 +208,6 @@ body {
   text-align: left;
   color: #fafafb;
   margin: 0 0 30px;
-  padding: 0;
 }
 
 .main__avatar {
@@ -137,7 +220,7 @@ body {
 
 .portfolio__heading,
 .contact__heading {
-  font: 800 72px/160px 'Montserrat', sans-serif;
+  font: 800 72px/150px 'Montserrat', sans-serif;
   text-align: center;
   text-transform: uppercase;
   color: #8191da;
@@ -154,7 +237,7 @@ body {
 }
 
 .portfolio__element {
-  margin: 0 0 90px;
+  margin-bottom: 90px;
 }
 
 .portfolio__title {
@@ -166,21 +249,25 @@ body {
 .portfolio__details {
   font: 400 12px/1.2 'Montserrat', sans-serif;
   color: #424554;
-  margin: 0 0 30px;
+  margin-bottom: 30px;
 }
 
 .portfolio__text {
-  margin: 0 0 30px;
+  margin-bottom: 30px;
 }
 
 .portfolio__image {
-  width: 100%;
-  margin-right: 40px;
+  border-radius: 2%;
 }
 
-.portfolio__image::after {
+.portfolio__imagebox {
+  display: inline-block;
+  max-width: 450px;
+}
+
+.portfolio__imagebox::after {
   content: '';
-  position: absolute;
+  position: relative;
   width: 80%;
   left: 10%;
   height: 10%;
@@ -223,6 +310,10 @@ body {
   transform: skewY(4deg);
 }
 
+.form__label {
+  font: 300 18px/1.66 'Merriweather Sans', sans-serif;
+}
+
 /**************************************
 * FOOTER
 **************************************/
@@ -245,6 +336,96 @@ body {
 **************************************/
 
 @media screen and (max-width: 766px) {
+
+  .header {
+    margin: 0;
+  }
+
+  .header__link { margin: 0; }
+
+  .header__link::after { background: none; }
+
+  .header__menu {
+    background: #424554;
+    padding: 10px 30px;
+    z-index: 999;
+    width: 180px;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    transform: translate3d(0,0,0) translateX(300px);
+    transition: transform 0.3s ease;
+    line-height: 3;
+    box-shadow: 0 0 30px 15px rgba(0,0,0,.33)
+  }
+
+  .header__menu-item {
+    width: 100%;
+    text-align: center;
+  }
+
+  .header__menu--open { transform: translate3d(0,0,0) translateX(0px); }
+
+  .main__heading {
+    font-size: 30px;
+  }
+
+  .portfolio__element {
+    margin-bottom: 45px;
+  }
+
+  .portfolio__heading {
+    margin: 0;
+  }
+
+  .portfolio__title {
+    margin-top: 45px;
+    font-size: 30px;
+  }
+
+  .portfolio__details {
+    margin-bottom: 15px;
+  }
+
+  .portfolio__text {
+    margin-bottom: 15px;
+  }
+
+
+  .contact {
+    padding-bottom: 45px;
+  }
+
+  .contact__heading {
+    margin: 0;
+  }
+
+
+  .portfolio__heading,
+  .contact__heading {
+    font-size: 44px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+
+  .portfolio__button {
+    margin: 0 0 15px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .contact__button {
+    margin: 0 0 15px;
+    width: 100%;
+    text-align: center;
+  }
+
+}
+
+@media screen and (max-width: 990px) {
+
   .footer {
     font-size: 12px;
     line-height: 60px;
@@ -256,4 +437,9 @@ body {
     height: 26px;
     padding: 0 12px;
   }
+
+  .portfolio__element {
+    margin-bottom: 60px;
+  }
+
 }

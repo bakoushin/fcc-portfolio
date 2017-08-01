@@ -16,10 +16,14 @@
 <div class="main">
   <div class="container">
     <header class="row header">
-      <ul class="col-sm-3 header__menu header__menu--left">
-        <li class="header__menu-item"><a class="header__link" href="#">Alex Bakoushin</a></li>
-      </ul>
-      <ul class="col-sm-9 header__menu header__menu--right">
+      <div class="col-xs-10 col-sm-6 text-left">
+        <a class="header__link" href="#">Alex Bakoushin</a>
+      </div>
+      <div class="col-xs-2 visible-xs-block text-right">
+        <a class="header__link" id="menu-open" href="#">☰</a>
+      </div>
+      <ul class="col-sm-6 header__menu text-right header__menu--open" id="menu">
+        <li class="visible-xs-block text-right"><a class="header__link" id="menu-close" href="#">✕</a></li>
         <li class="header__menu-item"><a class="header__link" href="#">Portfolio</a></li>
         <li class="header__menu-item"><a class="header__link" href="#">Contact</a></li>
       </ul>
@@ -47,15 +51,14 @@
 <h1 class="portfolio__heading">Portfolio</h1>
 
 <section class="row portfolio__element">
-  <div class="col-sm-offset-1 col-sm-5">
-    <div class="portfolio__image">
-      <img class="img-responsive" src="https://placekitten.com/g/450/345" alt="Tribute to Dr. Jonas Salk">
+  <div class="col-sm-6 text-center">
+    <div class="portfolio__imagebox">
+      <img class="img-responsive portfolio__image" src="https://placekitten.com/g/450/345" alt="Tribute to Dr. Jonas Salk">
     </div>
   </div>
-  <div class="col-sm-5">
+  <div class="col-sm-6 col-lg-5">
     <h2 class="portfolio__title">
-      Tribute to<br>
-      Dr.&nbsp;Jonas Salk
+      Tribute to Dr.&nbsp;Jonas&nbsp;Salk
     </h2>
     <div class="portfolio__details">
       HTML, CSS, JavaScript
@@ -69,12 +72,12 @@
 </section>
 
 <section class="row portfolio__element">
-  <div class="col-sm-offset-1 col-sm-5 col-sm-push-5">
-    <div class="portfolio__image">
-      <img class="img-responsive" src="https://placekitten.com/g/450/345" alt="Portfolio Page">
+  <div class="col-sm-6 col-sm-push-6 text-center">
+    <div class="portfolio__imagebox">
+      <img class="img-responsive portfolio__image" src="https://placekitten.com/g/450/345" alt="Portfolio Page">
     </div>
   </div>
-  <div class="col-sm-5 col-sm-pull-5">
+  <div class="col-sm-6 col-sm-pull-6 col-lg-5">
     <h2 class="portfolio__title">
       Portfolio Page
     </h2>
@@ -101,14 +104,16 @@
   <div class="col-sm-12 col-md-offset-1 col-md-6">
     <form action="#" method="post">
       <div class="form-group">
-        <label for="inputMessage">Feel free to drop me a line or two:</label>
-        <input type="text" class="input" id="inputMessage" autocomplete="off">
+        <label for="inputMessage" class="form__label">Feel free to drop me a line or two:</label>
+        <textarea rows="2" class="input textarea" id="inputMessage" autocomplete="off"></textarea>
       </div>
       <div class="form-group">
-        <label for="inputEmail">Your email, if you want me to answer back:</label>
-        <input type="email" class="input" id="inputEmail">
+        <label for="inputEmail" class="form__label">Your email, if you want me to answer back:</label>
+        <div class="inputbox">
+          <input type="email" class="input" id="inputEmail">
+        </div>
       </div>
-      <button type="submit" class="button">Send</button>
+      <button type="submit" class="button contact__button">Send</button>
     </form>
   </div>
 </div>
@@ -119,7 +124,7 @@
 <footer class="footer">
   <div class="container">
     <div class="row">
-      <div class="col-sm-6 col-sm-push-6 footer__social-icons">
+      <div class="col-md-6 col-md-push-6 footer__social-icons">
         <a href="https://codepen.io/bakoushin" target="_blank">
           <img class="footer__social-icon" src="/codepen.svg" alt="Codepen">
         </a>
@@ -136,7 +141,7 @@
           <img class="footer__social-icon" src="/linkedin.svg" alt="LinkedIn">
         </a>
       </div>
-      <div class="col-sm-6 col-sm-pull-6">
+      <div class="col-md-6 col-md-pull-6">
         Made with a lot of tea in cold Moscow, Russia.
       </div>
     </div>
@@ -144,5 +149,7 @@
 </footer>
 
 </body>
+
+<script type="text/javascript" src="script.js"></script>
 
 </html>
