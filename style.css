@@ -347,15 +347,16 @@ body {
 
   .header__menu {
     background: #424554;
-    padding: 10px 30px;
+    opacity: .95;
+    padding: 10px 60px 10px 20px;
     z-index: 999;
-    width: 180px;
+    width: 220px;
     height: 100vh;
     position: fixed;
     top: 0px;
     right: 0px;
-    transform: translate3d(0,0,0) translateX(300px);
-    transition: transform 0.3s ease;
+    transform: translate3d(300px, 0, 0);
+    transition: transform 0.3s cubic-bezier(.17, .89, .32, 1.28);
     line-height: 3;
     box-shadow: 0 0 30px 15px rgba(0,0,0,.33)
   }
@@ -365,7 +366,21 @@ body {
     text-align: center;
   }
 
-  .header__menu--open { transform: translate3d(0,0,0) translateX(0px); }
+  .header__menu--open { transform: translate3d(40px, 0, 0); }
+
+  .header__menu--open .header__menu-item {
+    transform: translateX(180px);
+    animation: slideLeft .3s cubic-bezier(.17, .89, .32, 1.48) forwards;
+  }
+
+  .header__menu--open .header__menu-item:nth-child(1) { animation-delay: .25s; }
+  .header__menu--open .header__menu-item:nth-child(2) { animation-delay: .10s; }
+  .header__menu--open .header__menu-item:nth-child(3) { animation-delay: .20s; }
+
+  @keyframes slideLeft {
+    0% { transform: translate3d(180px, 0, 0); }
+    100% { transform: translate3d(0, 0, 0); }
+  }
 
   .main__heading {
     font-size: 30px;
