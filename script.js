@@ -26,6 +26,29 @@ var ripple = function(e) {
   }, 300);
 }
 
+var submitMessageToAPI = function() {
+  var URL = 'https://1lo626jhdb.execute-api.eu-west-1.amazonaws.com/prod/sendEmail';
+  var data = {
+     message: document.getElementById('inputMessage').value,
+     email: document.getElementById('inputEmail').value
+  };
+  $.ajax({
+     type: 'POST',
+     url: URL,
+     dataType: 'json',
+     contentType: 'application/json',
+     data: JSON.stringify(data),
+     success: function() {
+      // clear form and show a success message
+      alert('yay');
+     },
+     error: function() {
+      // show an error message
+      alert('boo');
+     }
+  });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
 
   document.getElementById('menu-open')
@@ -45,5 +68,8 @@ document.addEventListener('DOMContentLoaded', function() {
   [].forEach.call(buttons, function(button) {
     button.addEventListener('click', ripple);
   });
+
+  document.getElementById('submit')
+    .addEventListener('click', submitMessageToAPI);
 
 });
