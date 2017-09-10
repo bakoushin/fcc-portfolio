@@ -30,7 +30,9 @@ body {
   letter-spacing: 2.6px;
   text-transform: uppercase;
   text-decoration: none;
+  text-align: center;
   padding: 14px 16px;
+  min-width: 120px;
   overflow: hidden;
   outline: none;
   transition: .25s ease-in color;
