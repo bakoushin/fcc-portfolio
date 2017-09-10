@@ -17,8 +17,12 @@ var ripple = function(event) {
   var y = event.offsetY;
   var span = document.createElement('span');
   span.classList.add('ripple');
-  span.style.left = x - (event.target.clientWidth * 1.6 / 2) + 'px';
-  span.style.top = y - (event.target.clientWidth * 1.6 / 2) + 'px';
+  var radius = Math.max(x, event.target.clientWidth - x) * 1.2;
+  var width = radius * 2;
+  span.style.width = width + 'px';
+  span.style.paddingTop = width + 'px';
+  span.style.left = x - radius + 'px';
+  span.style.top = y - radius + 'px';
   var button = event.target;
   button.appendChild(span);
   setTimeout(function() {

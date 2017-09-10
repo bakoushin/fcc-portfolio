@@ -34,6 +34,7 @@ body {
   min-width: 120px;
   overflow: hidden;
   outline: none;
+  z-index: 10;
 }
 
 @media screen and (min-width: 375px) {
@@ -76,13 +77,9 @@ body {
 .ripple {
   display: block;
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 160%;
-  padding-top: 160%;
   border-radius: 50%;
-  background: #424554;
-  z-index: -10;
+  background: #cdcfdb;
+  z-index: -1;
   transform: scale(0);
   opacity: 0;
   animation: .5s ease-out ripple;
