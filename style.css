@@ -35,43 +35,27 @@ body {
   min-width: 120px;
   overflow: hidden;
   outline: none;
-  transition: .25s ease-in color;
-  z-index: 0;
 }
 
 .button::before {
   content: '';
-  display: block;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  padding-top: 0;
-  opacity: 0;
-  border-radius: 50%;
-  background: #8191da;
-  z-index: -10;
-  transform: translate(-50%, -50%);
-  transition:
-    .15s ease-in width,
-    .15s ease-in padding-top,
-    .15s ease-in opacity;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #8191da;
+  visibility: hidden;
+}
+
+.button:hover::before {
+  visibility: visible;
 }
 
 .button--disabled {
   color: #424554;
   border-color: #424554;
   opacity: .5;
-}
-
-.button:hover {
-  color: #fafafb;
-}
-
-.button:hover::before {
-  width: 120%;
-  padding-top: 120%;
-  opacity: 1;
 }
 
 .ripple {
