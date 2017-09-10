@@ -5,47 +5,78 @@ var openMenu = function(event) {
 }
 
 var closeMenu = function(event) {
-  var el = document.getElementById('menu');
-  el.className = el.className.replace(/\s*header__menu--open/, '');
+  var menu = document.getElementById('menu');
+  menu.className = menu.className.replace(/\s*header__menu--open/, '');
   event.stopPropagation();
 }
 
-var ripple = function(e) {
-  e.stopPropagation();
-  e.preventDefault();
-  var x = e.offsetX;
-  var y = e.offsetY;
+var ripple = function(event) {
+  event.stopPropagation();
+  event.preventDefault();
+  var x = event.offsetX;
+  var y = event.offsetY;
   var span = document.createElement('span');
   span.classList.add('ripple');
-  span.style.left = x - (e.target.clientWidth * 1.6 / 2) + 'px';
-  span.style.top = y - (e.target.clientWidth * 1.6 / 2) + 'px';
-  var button = e.target;
+  span.style.left = x - (event.target.clientWidth * 1.6 / 2) + 'px';
+  span.style.top = y - (event.target.clientWidth * 1.6 / 2) + 'px';
+  var button = event.target;
   button.appendChild(span);
   setTimeout(function() {
     button.removeChild(span);
   }, 300);
 }
 
-var submitMessageToAPI = function() {
+var submitMessageToAPI = function(event) {
   var URL = 'https://1lo626jhdb.execute-api.eu-west-1.amazonaws.com/prod/sendEmail';
+  var inputMessage = document.getElementById('inputMessage');
+  var inputEmail = document.getElementById('inputEmail');
+  var submitButton = document.getElementById('submit');
+  var submitButton = document.getElementById('submit');
+  var notificationOk = document.getElementById('notification-ok');
+  var notificationError = document.getElementById('notification-error');
+
+  if (submitButton.classList.contains('disabled')) return;
+
+  if (!inputMessage.value) {
+    inputMessage.classList.add('input--warning');
+    inputMessage.nextElementSibling.classList.add('form-group__warning--active');
+    inputMessage.addEventListener('keyup', function(event) {
+      event.target.classList.remove('input--warning');
+      event.target.nextElementSibling.classList.remove('form-group__warning--active');
+    });
+    inputMessage.focus();
+    return;
+  }
+
+  submitButton.classList.toggle('button--disabled');
+
   var data = {
-     message: document.getElementById('inputMessage').value,
-     email: document.getElementById('inputEmail').value
+     message: inputMessage.value,
+     email: inputEmail.value
   };
+
   $.ajax({
-     type: 'POST',
-     url: URL,
-     dataType: 'json',
-     contentType: 'application/json',
-     data: JSON.stringify(data),
-     success: function() {
-      // clear form and show a success message
-      alert('yay');
-     },
-     error: function() {
-      // show an error message
-      alert('boo');
-     }
+    type: 'POST',
+    url: URL,
+    dataType: 'json',
+    contentType: 'application/json; charset=UTF-8',
+    data: JSON.stringify(data),
+    success: function() {
+      messageForm.reset();
+      notificationOk.classList.add('notification--active');
+    },
+    error: function() {
+      notificationError.classList.add('notification--active');
+    },
+    complete: function() {
+      submitButton.classList.toggle('button--disabled');
+      setTimeout(function() {
+        var notifications = document.querySelectorAll('.notification');
+        for (var i = 0; i < notifications.length; i++) {
+          notifications[i].classList.remove('notification--active');
+        }
+      }, 1500);
+    }
   });
 }
 
@@ -65,9 +96,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
   var buttons = document.querySelectorAll('.button');
-  [].forEach.call(buttons, function(button) {
-    button.addEventListener('click', ripple);
-  });
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', ripple);
+  }
 
   document.getElementById('submit')
     .addEventListener('click', submitMessageToAPI);

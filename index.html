@@ -102,16 +102,15 @@
 
 <div class="row">
   <div class="col-sm-12 col-md-offset-1 col-md-6">
-    <form action="#" method="post">
+    <form id="messageForm">
       <div class="form-group">
         <label for="inputMessage" class="form__label">Feel free to drop me a line or two:</label>
         <textarea rows="2" class="input textarea" id="inputMessage" autocomplete="off"></textarea>
+        <div class="form-group__warning">Please, enter some text :)</div>
       </div>
       <div class="form-group">
         <label for="inputEmail" class="form__label">Your email, if you want me to answer back:</label>
-        <div class="inputbox">
-          <input type="email" class="input" id="inputEmail">
-        </div>
+        <input type="email" class="input" id="inputEmail">
       </div>
       <a href="#" id="submit" class="button contact__button">Send</a>
     </form>
@@ -147,6 +146,18 @@
     </div>
   </div>
 </footer>
+
+<div class="notification notification--info" id="notification-ok">
+  <h1><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></h1>
+  <h2>Thank you!</h2>
+  <p>Your message is sent</p>
+</div>
+
+<div class="notification notification--danger" id="notification-error">
+  <h1><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></h1>
+  <h2>Oops!</h2>
+  <p>Something went wrong</p>
+</div>
 
 </body>
 
