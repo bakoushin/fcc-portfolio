@@ -35,7 +35,6 @@ var submitMessageToAPI = function(event) {
   var inputMessage = document.getElementById('inputMessage');
   var inputEmail = document.getElementById('inputEmail');
   var submitButton = document.getElementById('submit');
-  var submitButton = document.getElementById('submit');
   var notificationOk = document.getElementById('notification-ok');
   var notificationError = document.getElementById('notification-error');
 
@@ -107,4 +106,15 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('submit')
     .addEventListener('click', submitMessageToAPI);
 
+    document.getElementById('submit')
+      .addEventListener('click', anim);
+
 });
+
+var anim = function(event) {
+  var submitButton = document.getElementById('submit');
+  submitButton.classList.add('button--spin');
+  setTimeout(function() {
+    submitButton.classList.remove('button--spin');
+  }, 20000);
+}

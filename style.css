@@ -14,20 +14,13 @@ body {
 * BUTTON
 **************************************/
 
-.button,
-.button:link,
-.button:visited,
-.button:hover,
-.button:active {
+.button {
   position: relative;
   display: inline-block;
   border: 1px solid #8191da;
-  background: transparent;
   font: 300 18px/1 'Merriweather Sans', sans-serif;
-  color: #8191da;
   letter-spacing: 2.6px;
   text-transform: uppercase;
-  text-decoration: none;
   text-align: center;
   padding: 14px 16px;
   width: 100%;
@@ -35,15 +28,29 @@ body {
   overflow: hidden;
   outline: none;
   z-index: 10;
+  transition:
+    .15s ease-out border-width,
+    .15s ease-out border-radius,
+    .15s ease-out border-top-color,
+    .15s ease-out border-bottom-color,
+    .15s ease-out height,
+    .15s ease-out min-width .15s,
+    .15s ease-out width .15s,
+    .1s ease-out color .15s;
+}
+
+.button,
+.button:link,
+.button:visited,
+.button:hover,
+.button:active {
+  text-decoration: none;
+  color: #8191da;
 }
 
 @media screen and (min-width: 375px) {
 
-  .button,
-  .button:link,
-  .button:visited,
-  .button:hover,
-  .button:active {
+  .button {
     width: auto;
   }
 
@@ -68,10 +75,37 @@ body {
 
 }
 
-.button--disabled {
-  color: #424554;
-  border-color: #424554;
-  opacity: .5;
+.button--spin,
+.button--spin:link {
+  color: transparent;
+  background: transparent;
+  width: 48px;
+  min-width: 48px;
+  border-radius: 50%;
+  border-width: 3px;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  transition:
+    .15s ease-out color .4s,
+    .2s ease-out width .4s,
+    .2s ease-out border-width .6s,
+    .2s ease-out border-radius .5s,
+    .2s step-end border-top-color .4s,
+    .2s step-end border-bottom-color .4s;
+  animation: 2s spin linear infinite .6s;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.button--spin:hover::before {
+  visibility: hidden;
 }
 
 .ripple {
@@ -253,11 +287,7 @@ body {
     margin-bottom: 30px;
   }
 
-  .header__link,
-  .header__link:link,
-  .header__link:visited,
-  .header__link:hover,
-  .header__link:active {
+  .header__link {
     margin: 0 30px;
   }
 
@@ -534,6 +564,7 @@ body {
 @media screen and (min-width: 375px) {
 
   .contact__button {
+    width: 120px;
     margin: 0;
   }
 
