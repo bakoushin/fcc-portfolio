@@ -51,7 +51,7 @@ var submitMessageToAPI = function(event) {
     return;
   }
 
-  submitButton.classList.toggle('button--disabled');
+  submitButton.classList.add('button--spin');
 
   var data = {
      message: inputMessage.value,
@@ -72,8 +72,8 @@ var submitMessageToAPI = function(event) {
       notificationError.classList.add('notification--active');
     },
     complete: function() {
-      submitButton.classList.toggle('button--disabled');
       setTimeout(function() {
+        submitButton.classList.remove('button--spin');
         var notifications = document.querySelectorAll('.notification');
         for (var i = 0; i < notifications.length; i++) {
           notifications[i].classList.remove('notification--active');
@@ -106,8 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('submit')
     .addEventListener('click', submitMessageToAPI);
 
-    document.getElementById('submit')
-      .addEventListener('click', anim);
+  //document.getElementById('submit').addEventListener('click', anim);
 
 });
 
@@ -116,5 +115,5 @@ var anim = function(event) {
   submitButton.classList.add('button--spin');
   setTimeout(function() {
     submitButton.classList.remove('button--spin');
-  }, 20000);
+  }, 2000);
 }
