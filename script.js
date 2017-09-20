@@ -2,7 +2,7 @@ $(function(){
 
   var ripple = function(event) {
     event.preventDefault();
-    if ($(event.target).hasClass('button--spin')) return;
+    if ($(event.target).prop('disabled')) return;
     var x = event.offsetX;
     var y = event.offsetY;
     var radius = Math.max(x, event.target.clientWidth - x) * 1.2;
@@ -52,7 +52,7 @@ $(function(){
     var inputEmail = $('#inputEmail');
     var submitButton = $('#submit');
 
-    if (submitButton.hasClass('button--spin')) return;
+    if (submitButton.prop('disabled')) return;
 
     if (!inputMessage.val()) {
       inputMessage.addClass('input--warning')
@@ -65,7 +65,8 @@ $(function(){
       return;
     }
 
-    submitButton.addClass('button--spin');
+    submitButton.addClass('button--spin')
+      .prop('disabled', true);
 
     var data = {
        message: inputMessage.val(),
@@ -87,7 +88,8 @@ $(function(){
       },
       complete: function() {
         setTimeout(function() {
-          submitButton.removeClass('button--spin');
+          submitButton.removeClass('button--spin')
+            .prop('disabled', false);
           $('.notification').removeClass('notification--active');
         }, 1500);
       }
