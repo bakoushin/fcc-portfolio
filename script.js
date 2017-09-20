@@ -48,8 +48,8 @@ $(function(){
     event.preventDefault();
 
     var URL = 'https://1lo626jhdb.execute-api.eu-west-1.amazonaws.com/prod/sendEmail';
-    var inputMessage = $('#inputMessage');
-    var inputEmail = $('#inputEmail');
+    var inputMessage = $('.input[name=inputMessage]');
+    var inputEmail = $('.input[name=inputEmail]');
     var submitButton = $('#submit');
 
     if (submitButton.prop('disabled')) return;
