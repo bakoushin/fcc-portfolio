@@ -300,7 +300,9 @@ body {
 .header__link:link,
 .header__link:visited,
 .header__link:hover,
-.header__link:active {
+.header__link:active,
+.header__menu-control,
+.header__menu-control:hover {
   display: inline-block;
   text-decoration: none;
   color: #fafafb;

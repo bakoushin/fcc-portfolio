@@ -20,6 +20,14 @@ $(function(){
       }, 300);
   }
 
+  $('.header__link').click(function(event) {
+    var target = $(event.target).attr('href');
+    $('#menu').removeClass('header__menu--open');
+    $('html, body').animate({
+      scrollTop: $(target).offset().top
+    }, 500);
+  });
+
   $('#menu-open').click(function(event) {
     $('#menu').addClass('header__menu--open');
     event.stopPropagation();
