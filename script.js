@@ -42,6 +42,12 @@ $(function(){
     event.stopPropagation();
   });
 
+  /* Automatically resize textarea height
+     using Autosize script by Jack Moore.
+     http://www.jacklmoore.com/autosize/
+  */
+  autosize($('.input[name=inputMessage]'));
+
   $('.button').click(ripple);
 
   $('#submit').click(function(event) {

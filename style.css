@@ -197,7 +197,7 @@ body {
 
 .textarea {
   height: auto;
-  min-height: 72px;
+  min-height: 36px;
   resize: none;
 }
 
