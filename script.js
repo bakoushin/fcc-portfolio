@@ -1,119 +1,89 @@
-var openMenu = function(event) {
-  document.getElementById('menu')
-    .className += ' header__menu--open';
-  event.stopPropagation();
-}
+$(function(){
 
-var closeMenu = function(event) {
-  var menu = document.getElementById('menu');
-  menu.className = menu.className.replace(/\s*header__menu--open/, '');
-  event.stopPropagation();
-}
-
-var ripple = function(event) {
-  event.stopPropagation();
-  event.preventDefault();
-  var x = event.offsetX;
-  var y = event.offsetY;
-  var span = document.createElement('span');
-  span.classList.add('ripple');
-  var radius = Math.max(x, event.target.clientWidth - x) * 1.2;
-  var width = radius * 2;
-  span.style.width = width + 'px';
-  span.style.paddingTop = width + 'px';
-  span.style.left = x - radius + 'px';
-  span.style.top = y - radius + 'px';
-  var button = event.target;
-  button.appendChild(span);
-  setTimeout(function() {
-    button.removeChild(span);
-  }, 300);
-}
-
-var submitMessageToAPI = function(event) {
-  var URL = 'https://1lo626jhdb.execute-api.eu-west-1.amazonaws.com/prod/sendEmail';
-  var inputMessage = document.getElementById('inputMessage');
-  var inputEmail = document.getElementById('inputEmail');
-  var submitButton = document.getElementById('submit');
-  var notificationOk = document.getElementById('notification-ok');
-  var notificationError = document.getElementById('notification-error');
-
-  if (submitButton.classList.contains('disabled')) return;
-
-  if (!inputMessage.value) {
-    inputMessage.classList.add('input--warning');
-    inputMessage.nextElementSibling.classList.add('form-group__warning--active');
-    inputMessage.addEventListener('keyup', function(event) {
-      event.target.classList.remove('input--warning');
-      event.target.nextElementSibling.classList.remove('form-group__warning--active');
-    });
-    inputMessage.focus();
-    return;
-  }
-
-  submitButton.classList.add('button--spin');
-
-  var data = {
-     message: inputMessage.value,
-     email: inputEmail.value
-  };
-
-  $.ajax({
-    type: 'POST',
-    url: URL,
-    dataType: 'json',
-    contentType: 'application/json; charset=UTF-8',
-    data: JSON.stringify(data),
-    success: function() {
-      messageForm.reset();
-      notificationOk.classList.add('notification--active');
-    },
-    error: function() {
-      notificationError.classList.add('notification--active');
-    },
-    complete: function() {
+  var ripple = function(event) {
+    event.preventDefault();
+    if ($(event.target).hasClass('button--spin')) return;
+    var x = event.offsetX;
+    var y = event.offsetY;
+    var radius = Math.max(x, event.target.clientWidth - x) * 1.2;
+    var width = radius * 2;
+    var span = $('<span class="ripple"></span>')
+      .css({
+        width: width + 'px',
+        paddingTop: width + 'px',
+        left: x - radius + 'px',
+        top: y - radius + 'px'
+      })
+      .appendTo(event.target);
       setTimeout(function() {
-        submitButton.classList.remove('button--spin');
-        var notifications = document.querySelectorAll('.notification');
-        for (var i = 0; i < notifications.length; i++) {
-          notifications[i].classList.remove('notification--active');
-        }
-      }, 1500);
-    }
-  });
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-
-  document.getElementById('menu-open')
-    .addEventListener('click', openMenu);
-
-  document.getElementById('menu-close')
-    .addEventListener('click', closeMenu);
-
-  window.addEventListener('click', closeMenu);
-
-  document.getElementById('menu')
-    .addEventListener('click', function(event) {
-      event.stopPropagation();
-    });
-
-  var buttons = document.querySelectorAll('.button');
-  for (var i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener('click', ripple);
+        span.remove();
+      }, 300);
   }
 
-  document.getElementById('submit')
-    .addEventListener('click', submitMessageToAPI);
+  $('#menu-open').click(function(event) {
+    $('#menu').addClass('header__menu--open');
+    event.stopPropagation();
+  });
 
-  //document.getElementById('submit').addEventListener('click', anim);
+  $('#menu-close').add(window).click(function(event) {
+    $('#menu').removeClass('header__menu--open');
+    event.stopPropagation();
+  });
+
+  $('#menu').click(function(event) {
+    event.stopPropagation();
+  });
+
+  $('.button').click(ripple);
+
+  $('#submit').click(function(event) {
+    event.preventDefault();
+
+    var URL = 'https://1lo626jhdb.execute-api.eu-west-1.amazonaws.com/prod/sendEmail';
+    var inputMessage = $('#inputMessage');
+    var inputEmail = $('#inputEmail');
+    var submitButton = $('#submit');
+
+    if (submitButton.hasClass('button--spin')) return;
+
+    if (!inputMessage.val()) {
+      inputMessage.addClass('input--warning')
+        .keyup(function(event) {
+          $(event.target).removeClass('input--warning')
+          .next().removeClass('form-group__warning--active');
+        })
+        .next().addClass('form-group__warning--active');
+      inputMessage.focus();
+      return;
+    }
+
+    submitButton.addClass('button--spin');
+
+    var data = {
+       message: inputMessage.val(),
+       email: inputEmail.val()
+    };
+
+    $.ajax({
+      type: 'POST',
+      url: URL,
+      dataType: 'json',
+      contentType: 'application/json; charset=UTF-8',
+      data: JSON.stringify(data),
+      success: function() {
+        $('#messageForm').trigger('reset');
+        $('#notification-ok').addClass('notification--active');
+      },
+      error: function() {
+        $('#notification-error').addClass('notification--active');
+      },
+      complete: function() {
+        setTimeout(function() {
+          submitButton.removeClass('button--spin');
+          $('.notification').removeClass('notification--active');
+        }, 1500);
+      }
+    });
+  });
 
 });
-
-var anim = function(event) {
-  var submitButton = document.getElementById('submit');
-  submitButton.classList.add('button--spin');
-  setTimeout(function() {
-    submitButton.classList.remove('button--spin');
-  }, 2000);
-}
