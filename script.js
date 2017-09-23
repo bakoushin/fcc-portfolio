@@ -116,22 +116,26 @@ $(function(){
     }
     // scrolling down
     else if (scrollTop > previousScrollTop) {
+      // nav is above viewport
+      if (scrollTop >= navTop + navHeight) {
+        if (scrollTop <= bodyHeight - viewportHeight) {
+          if (nav.css('position') != 'fixed') {
+            nav.addClass('nav--floating').css({
+              position: 'absolute',
+              top: scrollTop - navHeight * 1.5
+            });
+            console.log('▲ absolute : above');
+          }
+        }
+      }
       // nav is on top of viewport
-      if (scrollTop <= navTop) {
+      else if (scrollTop >= navTop) {
         if (nav.css('position') != 'absolute') {
           nav.addClass('nav--floating').css({
             position: 'absolute',
             top: scrollTop
           });
-        }
-      }
-      // nav is above viewport
-      else if (scrollTop >= navTop + navHeight) {
-        if (scrollTop <= bodyHeight - viewportHeight) {
-          nav.addClass('nav--floating').css({
-            position: 'absolute',
-            top: scrollTop - navHeight * 1.5
-          });
+          console.log('▲ absolute : top');
         }
       }
     }
@@ -145,6 +149,7 @@ $(function(){
             position: 'fixed',
             top: 0
           });
+          console.log('▼ fixed');
         }
       }
     }
