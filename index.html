@@ -13,21 +13,26 @@
 
 <body>
 
-<div class="main" id="main">
+<nav class="nav" id="nav">
   <div class="container">
-    <header class="row header">
+    <div class="row">
       <div class="col-xs-9 col-sm-6 text-left">
-        <a class="header__link" href="#main">Alex Bakoushin</a>
+        <a class="nav__link" href="#main">Alex Bakoushin</a>
       </div>
       <div class="col-xs-3 visible-xs-block text-right">
-        <a class="header__menu-control" id="menu-open" href="#">☰</a>
+        <a class="nav__menu-control" id="menu-open" href="#">☰</a>
       </div>
-      <ul class="col-sm-6 header__menu text-right" id="menu">
-        <li class="header__menu-item visible-xs-block"><a class="header__menu-control" id="menu-close" href="#">✕</a></li>
-        <li class="header__menu-item"><a class="header__link" href="#portfolio">Portfolio</a></li>
-        <li class="header__menu-item"><a class="header__link" href="#contact">Contact</a></li>
+      <ul class="col-sm-6 nav__menu text-right" id="menu">
+        <li class="nav__menu-item visible-xs-block"><a class="nav__menu-control" id="menu-close" href="#">✕</a></li>
+        <li class="nav__menu-item"><a class="nav__link" href="#portfolio">Portfolio</a></li>
+        <li class="nav__menu-item"><a class="nav__link" href="#contact">Contact</a></li>
       </ul>
-    </header>
+    </div>
+  </div>
+</nav>
+
+<section class="main" id="main">
+  <div class="container">
     <div class="row">
       <div class="col-sm-5 col-sm-push-7 text-center">
         <img class="img-circle main__avatar" src="https://placekitten.com/g/218/218" alt="Alex Bakoushin">
@@ -43,82 +48,75 @@
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<div class="portfolio" id="portfolio">
-<div class="container">
-
-<h1 class="portfolio__heading">Portfolio</h1>
-
-<section class="row portfolio__element">
-  <div class="col-sm-6 text-center">
-    <div class="portfolio__imagebox">
-      <img class="img-responsive portfolio__image" src="https://placekitten.com/g/450/345" alt="Tribute to Dr. Jonas Salk">
-    </div>
-  </div>
-  <div class="col-sm-6 col-lg-5">
-    <h2 class="portfolio__title">
-      Tribute to Dr.&nbsp;Jonas&nbsp;Salk
-    </h2>
-    <div class="portfolio__details">
-      HTML, CSS, JavaScript
-    </div>
-    <p class="portfolio__text">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    </p>
-    <a class="button portfolio__button" href="#">CodePen</a>
-    <a class="button portfolio__button" href="#">GitHub</a>
+<section class="portfolio" id="portfolio">
+  <div class="container">
+    <h1 class="portfolio__heading">Portfolio</h1>
+    <article class="row portfolio__element">
+      <div class="col-sm-6 text-center">
+        <div class="portfolio__imagebox">
+          <img class="img-responsive portfolio__image" src="https://placekitten.com/g/450/345" alt="Tribute to Dr. Jonas Salk">
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-5">
+        <h2 class="portfolio__title">
+          Tribute to Dr.&nbsp;Jonas&nbsp;Salk
+        </h2>
+        <div class="portfolio__details">
+          HTML, CSS, JavaScript
+        </div>
+        <p class="portfolio__text">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+        <a class="button portfolio__button" href="#">CodePen</a>
+        <a class="button portfolio__button" href="#">GitHub</a>
+      </div>
+    </article>
+    <article class="row portfolio__element">
+      <div class="col-sm-6 col-sm-push-6 text-center">
+        <div class="portfolio__imagebox">
+          <img class="img-responsive portfolio__image" src="https://placekitten.com/g/450/345" alt="Portfolio Page">
+        </div>
+      </div>
+      <div class="col-sm-6 col-sm-pull-6 col-lg-5">
+        <h2 class="portfolio__title">
+          Portfolio Page
+        </h2>
+        <div class="portfolio__details">
+          HTML, CSS, JavaScript
+        </div>
+        <p class="portfolio__text">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+        <a class="button portfolio__button" href="#">CodePen</a>
+        <a class="button portfolio__button" href="#">GitHub</a>
+      </div>
+    </article>
   </div>
 </section>
 
-<section class="row portfolio__element">
-  <div class="col-sm-6 col-sm-push-6 text-center">
-    <div class="portfolio__imagebox">
-      <img class="img-responsive portfolio__image" src="https://placekitten.com/g/450/345" alt="Portfolio Page">
+<section class="contact" id="contact">
+  <div class="container">
+    <h1 class="contact__heading">Contact</h1>
+    <div class="row">
+      <div class="col-sm-12 col-md-offset-1 col-md-6">
+        <form id="messageForm">
+          <div class="form-group">
+            <label for="inputMessage" class="form__label">Feel free to drop me a line or two:</label>
+            <textarea rows="1" class="input textarea" name="inputMessage" autocomplete="off"></textarea>
+            <div class="form-group__warning">Please, enter some text :)</div>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail" class="form__label">Your email, if you want me to answer back:</label>
+            <input type="email" class="input" name="inputEmail">
+          </div>
+          <a href="#" id="submit" class="button button--spinnable contact__button">Send</a>
+        </form>
+      </div>
     </div>
-  </div>
-  <div class="col-sm-6 col-sm-pull-6 col-lg-5">
-    <h2 class="portfolio__title">
-      Portfolio Page
-    </h2>
-    <div class="portfolio__details">
-      HTML, CSS, JavaScript
-    </div>
-    <p class="portfolio__text">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    </p>
-    <a class="button portfolio__button" href="#">CodePen</a>
-    <a class="button portfolio__button" href="#">GitHub</a>
   </div>
 </section>
-
-</div>
-</div>
-
-<div class="contact" id="contact">
-<div class="container">
-
-<h1 class="contact__heading">Contact</h1>
-
-<div class="row">
-  <div class="col-sm-12 col-md-offset-1 col-md-6">
-    <form id="messageForm">
-      <div class="form-group">
-        <label for="inputMessage" class="form__label">Feel free to drop me a line or two:</label>
-        <textarea rows="1" class="input textarea" name="inputMessage" autocomplete="off"></textarea>
-        <div class="form-group__warning">Please, enter some text :)</div>
-      </div>
-      <div class="form-group">
-        <label for="inputEmail" class="form__label">Your email, if you want me to answer back:</label>
-        <input type="email" class="input" name="inputEmail">
-      </div>
-      <a href="#" id="submit" class="button button--spinnable contact__button">Send</a>
-    </form>
-  </div>
-</div>
-
-</div>
-</div>
 
 <footer class="footer">
   <div class="container">
