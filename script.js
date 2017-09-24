@@ -34,15 +34,20 @@ $(function(){
     $('#menu').addClass('nav__menu--open');
     event.preventDefault();
     event.stopPropagation();
+    $(window).on('click touchstart', function() {
+      $('#menu').removeClass('nav__menu--open');
+      $(window).unbind('click touchstart');
+    });
   });
 
-  $('#menu-close').add(window).click(function(event) {
+  $('#menu-close').click(function() {
     $('#menu').removeClass('nav__menu--open');
     event.preventDefault();
     event.stopPropagation();
+    $(window).unbind('click touchstart');
   });
 
-  $('#menu').click(function(event) {
+  $('#menu').on('click touchstart', function(event) {
     event.stopPropagation();
   });
 
