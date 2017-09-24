@@ -30,11 +30,13 @@ $(function(){
 
   $('#menu-open').click(function(event) {
     $('#menu').addClass('nav__menu--open');
+    event.preventDefault();
     event.stopPropagation();
   });
 
   $('#menu-close').add(window).click(function(event) {
     $('#menu').removeClass('nav__menu--open');
+    event.preventDefault();
     event.stopPropagation();
   });
 
@@ -118,25 +120,24 @@ $(function(){
     else if (scrollTop > previousScrollTop) {
       // nav is above viewport
       if (scrollTop >= navTop + navHeight) {
+        // fix for elastic scrolling in mobile browsers
         if (scrollTop <= bodyHeight - viewportHeight) {
+          // fix for Safari mobile
           if (nav.css('position') != 'fixed') {
             nav.addClass('nav--floating').css({
               position: 'absolute',
-              top: scrollTop - navHeight * 1.5
+              top: scrollTop - navHeight * 2
             });
-            console.log('▲ absolute : above');
+            //console.log('▲ absolute : above');
           }
         }
       }
-      // nav is on top of viewport
-      else if (scrollTop >= navTop) {
-        if (nav.css('position') != 'absolute') {
-          nav.addClass('nav--floating').css({
-            position: 'absolute',
-            top: scrollTop
-          });
-          console.log('▲ absolute : top');
-        }
+      else if (nav.css('position') == 'fixed') {
+        nav.addClass('nav--floating').css({
+          position: 'absolute',
+          top: scrollTop
+        });
+        //console.log('▲ absolute : top');
       }
     }
     // scrolling up
@@ -149,7 +150,7 @@ $(function(){
             position: 'fixed',
             top: 0
           });
-          console.log('▼ fixed');
+          //console.log('▼ fixed');
         }
       }
     }
