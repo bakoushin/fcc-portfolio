@@ -284,13 +284,28 @@ body {
 }
 
 /**************************************
-* HEADER
+* NAVIGATION
 **************************************/
 
 .nav {
   font: 400 18px/4 'Montserrat', sans-serif;
   text-transform: uppercase;
-  transition: .3s ease-out box-shadow;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  transition: .5s ease-out box-shadow;
+}
+
+.nav--fixed {
+  position: fixed;
+}
+
+.nav--floating {
+  background: #9baeff;
+  opacity: .90;
+  box-shadow: 0 0 12px 6px rgba(0,0,0,.15)
 }
 
 .nav__menu-item {
@@ -392,24 +407,6 @@ body {
     transition-delay: .20s;
   }
 
-}
-
-/**************************************
-* NAVIGATION
-**************************************/
-
-.nav {
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 100;
-}
-
-.nav--floating {
-  background: #9baeff;
-  opacity: .95;
-  box-shadow: 0 0 12px 6px rgba(0,0,0,.15)
 }
 
 /**************************************

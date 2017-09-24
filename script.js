@@ -22,9 +22,11 @@ $(function(){
 
   $('.nav__link').click(function(event) {
     var target = $(event.target).attr('href');
+    var navHeight = $('#nav').height();
+    var targetTop = $(target).offset().top - navHeight;
     $('#menu').removeClass('nav__menu--open');
     $('html, body').animate({
-      scrollTop: $(target).offset().top
+      scrollTop: Math.max(0, targetTop)
     }, 500);
   });
 
@@ -104,57 +106,18 @@ $(function(){
     });
   });
 
-  var previousScrollTop = 0;
   $(window).scroll(function() {
     var nav = $('#nav');
     var navHeight = nav.height();
-    var navTop = nav.offset().top;
     var scrollTop = $(window).scrollTop();
-    var viewportHeight = $(window).height();
-    var bodyHeight = $('body').height();
-    // remove floating on top of the page
     if (scrollTop <= 0) {
-      nav.removeClass('nav--floating').removeAttr('style');
+      nav.removeClass('nav--fixed nav--floating');
     }
-    // scrolling down
-    else if (scrollTop > previousScrollTop) {
-      // nav is above viewport
-      if (scrollTop >= navTop + navHeight) {
-        // fix for elastic scrolling in mobile browsers
-        if (scrollTop <= bodyHeight - viewportHeight) {
-          // fix for Safari mobile
-          if (nav.css('position') != 'fixed') {
-            nav.addClass('nav--floating').css({
-              position: 'absolute',
-              top: scrollTop - navHeight * 2
-            });
-            //console.log('▲ absolute : above');
-          }
-        }
-      }
-      else if (nav.css('position') == 'fixed') {
-        nav.addClass('nav--floating').css({
-          position: 'absolute',
-          top: scrollTop
-        });
-        //console.log('▲ absolute : top');
-      }
+    else {
+      if (scrollTop > 0) nav.addClass('nav--fixed');
+      if (scrollTop > navHeight * .5) nav.addClass('nav--floating');
     }
-    // scrolling up
-    else if (scrollTop < previousScrollTop) {
-      // nav is on top of viewport
-      if (scrollTop > 0 && scrollTop <= navTop) {
-        // change position if it isn't already set
-        if (nav.css('position') != 'fixed') {
-          nav.css({
-            position: 'fixed',
-            top: 0
-          });
-          //console.log('▼ fixed');
-        }
-      }
-    }
-    previousScrollTop = scrollTop;
-  })
+
+  });
 
 });
