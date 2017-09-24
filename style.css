@@ -324,9 +324,22 @@ body {
 .nav__link:active,
 .nav__menu-control,
 .nav__menu-control:hover {
+  position: relative;
   display: inline-block;
   text-decoration: none;
   color: #fafafb;
+}
+
+/* Target size for small controls */
+.nav__menu-control::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
 }
 
 @media screen and (min-width: 766px) {
