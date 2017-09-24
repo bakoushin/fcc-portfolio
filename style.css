@@ -288,7 +288,7 @@ body {
 **************************************/
 
 .nav {
-  font: 400 18px/4 'Montserrat', sans-serif;
+  font: 400 18px/3 'Montserrat', sans-serif;
   text-transform: uppercase;
   width: 100%;
   position: absolute;
@@ -308,6 +308,10 @@ body {
   box-shadow: 0 0 12px 6px rgba(0,0,0,.15)
 }
 
+.nav__menu {
+  margin: 0;
+}
+
 .nav__menu-item {
   display: inline-block;
   text-align: center;
@@ -323,10 +327,13 @@ body {
   display: inline-block;
   text-decoration: none;
   color: #fafafb;
-  margin: 0 15px;
 }
 
 @media screen and (min-width: 766px) {
+
+  .nav {
+    line-height: 4;
+  }
 
   .nav__link {
     margin: 0 30px;
@@ -422,7 +429,7 @@ body {
     #9baeff,
     #8191da
   );
-  padding-top: 84px;
+  padding-top: 60px;
   padding-bottom: 14%;
   font: 300 18px/1.66 'Merriweather Sans', sans-serif;
   color: #424554;
@@ -453,7 +460,7 @@ body {
 @media screen and (min-width: 766px) {
 
   .main {
-    padding-top: 114px;
+    padding-top: 90px;
   }
 
   .main__heading {
