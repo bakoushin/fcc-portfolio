@@ -402,7 +402,7 @@ body {
   }
 
   .nav__menu-item:nth-child(1) {
-    transform: translateX(180px) rotate(1080deg);
+    transform: translate3d(180px, 0, 0) rotate(1080deg);
   }
 
   /** Open state **/
