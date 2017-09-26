@@ -6,7 +6,7 @@
   <title>Portfolio</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:300|Montserrat:400,800" rel="stylesheet">
   <link href="/style.css" rel="stylesheet">
 </head>
@@ -16,13 +16,13 @@
 <nav class="nav" id="nav">
   <div class="container">
     <div class="row">
-      <div class="col-xs-9 col-sm-6 text-left">
+      <div class="col-xs-9 col-sm-6">
         <a class="nav__link" href="#main">Alex Bakoushin</a>
       </div>
-      <div class="col-xs-3 visible-xs-block text-right">
+      <div class="col-xs-3 visible-xs-block nav__hamburger-menu">
         <a class="nav__menu-control" id="menu-open" href="#">☰</a>
       </div>
-      <ul class="col-sm-6 nav__menu text-right" id="menu">
+      <ul class="col-sm-6 nav__menu" id="menu">
         <li class="nav__menu-item visible-xs-block"><a class="nav__menu-control" id="menu-close" href="#">✕</a></li>
         <li class="nav__menu-item"><a class="nav__link" href="#portfolio">Portfolio</a></li>
         <li class="nav__menu-item"><a class="nav__link" href="#contact">Contact</a></li>
@@ -34,8 +34,8 @@
 <section class="main" id="main">
   <div class="container">
     <div class="row">
-      <div class="col-sm-5 col-sm-push-7 text-center">
-        <img class="img-circle main__avatar" src="https://placekitten.com/g/218/218" alt="Alex Bakoushin">
+      <div class="col-sm-5 col-sm-push-7 main__avatar">
+        <img class="img-circle" src="https://placekitten.com/g/218/218" alt="Alex Bakoushin">
       </div>
       <div class="col-sm-offset-1 col-sm-5 col-sm-pull-5">
         <h1 class="main__heading">
@@ -54,7 +54,7 @@
   <div class="container">
     <h1 class="portfolio__heading">Portfolio</h1>
     <article class="row portfolio__element">
-      <div class="col-sm-6 text-center">
+      <div class="col-sm-6 portfolio__image-container">
         <div class="portfolio__imagebox">
           <img class="img-responsive portfolio__image" src="https://placekitten.com/g/450/345" alt="Tribute to Dr. Jonas Salk">
         </div>
@@ -74,7 +74,7 @@
       </div>
     </article>
     <article class="row portfolio__element">
-      <div class="col-sm-6 col-sm-push-6 text-center">
+      <div class="col-sm-6 col-sm-push-6 portfolio__image-container">
         <div class="portfolio__imagebox">
           <img class="img-responsive portfolio__image" src="https://placekitten.com/g/450/345" alt="Portfolio Page">
         </div>
@@ -146,15 +146,15 @@
 </footer>
 
 <div class="notification notification--info" id="notification-ok">
-  <h1><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></h1>
-  <h2>Thank you!</h2>
-  <p>Your message is sent</p>
+  <div><span class="glyphicon glyphicon-ok notification__icon" aria-hidden="true"></span></div>
+  <div class="notification__header">Thank you!</div>
+  <div class="notification__message">Your message is sent</div>
 </div>
 
 <div class="notification notification--danger" id="notification-error">
-  <h1><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></h1>
-  <h2>Oops!</h2>
-  <p>Something went wrong</p>
+  <div><span class="glyphicon glyphicon-remove notification__icon" aria-hidden="true"></span></div>
+  <div class="notification__header">Oops!</div>
+  <div class="notification__message">Something went wrong</div>
 </div>
 
 </body>

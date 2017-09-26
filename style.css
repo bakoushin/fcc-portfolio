@@ -8,7 +8,13 @@ body {
   background-color: #fafafb;
 }
 
-::selection { background-color: #9baeff; }
+p {
+  margin: 0 0 10px;
+}
+
+::selection {
+  background-color: #9baeff;
+}
 
 /**************************************
 * BUTTON
@@ -222,7 +228,9 @@ body {
 }
 
 .form__label {
+  display: inline-block;
   font: 300 18px/1.66 'Merriweather Sans', sans-serif;
+  margin-bottom: 5px;
 }
 
 @media screen and (min-width: 766px) {
@@ -248,7 +256,7 @@ body {
   background: #000;
   text-align: center;
   border-radius: 10px;
-  padding: 30px 40px;
+  padding: 35px 25px;
   min-width: 235px;
   opacity: 0.75;
   z-index: 1000;
@@ -266,6 +274,19 @@ body {
   visibility: visible;
   opacity: .75;
   animation: 1.5s ease notification;
+}
+
+.notification__icon {
+  font-size: 42px;
+  line-height: 1.6;
+}
+
+.notification__header {
+  font: 800 32px/2 'Montserrat', sans-serif;
+}
+
+.notification__message {
+  font: 300 16px/2 'Merriweather Sans', sans-serif;
 }
 
 @keyframes notification {
@@ -310,6 +331,11 @@ body {
 
 .nav__menu {
   margin: 0;
+  text-align: right;
+}
+
+.nav__hamburger-menu {
+  text-align: right;
 }
 
 .nav__menu-item {
@@ -468,6 +494,7 @@ body {
 
 .main__avatar {
   margin-bottom: 30px;
+  text-align: center;
 }
 
 @media screen and (min-width: 766px) {
@@ -541,6 +568,10 @@ body {
 
 .portfolio__image {
   border-radius: 2%;
+}
+
+.portfolio__image-container {
+  text-align: center;
 }
 
 .portfolio__imagebox {
