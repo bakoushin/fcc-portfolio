@@ -17,6 +17,64 @@ p {
 }
 
 /**************************************
+* LINKS
+**************************************/
+
+.link:link,
+.link:visited,
+.link:hover,
+.link:active {
+  position: relative;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.link::after {
+  content: '';
+  display: block;
+  position: relative;
+  bottom: 4px;
+  height: 1px;
+  width: 100%;
+  background-position: center bottom;
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  transition: .15s ease-out background-size;
+}
+
+.link:hover::after {
+  background-size: 100% 2px;
+}
+
+.link--dark:link,
+.link--dark:visited,
+.link--dark:hover,
+.link--dark:active {
+  color: #8191da;
+}
+
+.link--dark::after {
+  background-image: linear-gradient(
+    to right,
+    #8191da,
+    #8191da);
+}
+
+.link--light:link,
+.link--light:visited,
+.link--light:hover,
+.link--light:active {
+  color: #fafafb;
+}
+
+.link--light::after {
+  background-image: linear-gradient(
+    to right,
+    #fafafb,
+    #fafafb);
+}
+
+/**************************************
 * BUTTON
 **************************************/
 
