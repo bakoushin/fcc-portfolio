@@ -1,7 +1,6 @@
 $(function(){
 
   var ripple = function(event) {
-    event.preventDefault();
     if ($(event.target).prop('disabled')) return;
     var x = event.offsetX;
     var y = event.offsetY;
@@ -21,6 +20,7 @@ $(function(){
   }
 
   $('.nav__link').click(function(event) {
+    event.preventDefault();
     var target = $(event.target).attr('href');
     var navHeight = $('#nav').height();
     var targetTop = $(target).offset().top - navHeight;
